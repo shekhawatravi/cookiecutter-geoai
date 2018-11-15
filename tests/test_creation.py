@@ -27,7 +27,7 @@ class TestCookieSetup(object):
     def test_project_name(self):
         project = self.path
         if pytest.param.get('project_name'):
-            name = system_check('DrivenData')
+            name = system_check('GeoAI')
             assert project.name == name
         else:
             assert project.name == 'project_name'
@@ -37,7 +37,7 @@ class TestCookieSetup(object):
         args = ['python', setup_, '--author']
         p = check_output(args).decode('ascii').strip()
         if pytest.param.get('author_name'):
-            assert p == 'DrivenData'
+            assert p == 'GeoAI'
         else:
             assert p == 'Your name (or your organization/company/team)'
 
@@ -47,7 +47,7 @@ class TestCookieSetup(object):
         assert no_curlies(readme_path)
         if pytest.param.get('project_name'):
             with open(readme_path) as fin:
-                assert 'DrivenData' == next(fin).strip()
+                assert 'GeoAI' == next(fin).strip()
 
     def test_setup(self):
         setup_ = self.path / 'setup.py'
@@ -73,7 +73,7 @@ class TestCookieSetup(object):
         reqs_path = self.path / 'requirements.txt'
         assert reqs_path.exists()
         assert no_curlies(reqs_path)
-        if pytest.param.get('python_interpreter'):
+        if pytest.param.get('conda_parent_environment'):
             with open(reqs_path) as fin:
                 lines = list(map(lambda x: x.strip(), fin.readlines()))
             assert 'pathlib2' in lines

@@ -7,10 +7,10 @@ from cookiecutter import main
 CCDS_ROOT = Path(__file__).parents[1].resolve()
 
 args = {
-        'project_name': 'DrivenData',
-        'author_name': 'DrivenData',
+        'project_name': 'GeoAI',
+        'author_name': 'GeoAI',
         'open_source_license': 'BSD-3-Clause',
-        'python_interpreter': 'python'
+        'conda_parent_environment': 'arcgispro-py3'
         }
 
 
