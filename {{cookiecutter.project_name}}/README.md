@@ -11,7 +11,7 @@ Project Organization
     ├── README.md          <- The top-level README for developers using this project.
     │
     ├── arcgis             <- Root location for ArcGIS Pro project created as part of
-    │                         project creation.
+    │                         data science project creation.
     │
     ├── data
     │   ├── external       <- Data from third party sources.

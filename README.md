@@ -20,11 +20,9 @@ $ conda -c conda-forge install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/knu2xs/cookiecutter-geoai
-
-
-[![asciicast](https://asciinema.org/a/9bgl5qh17wlop4xyxu9n9wr02.png)](https://asciinema.org/a/9bgl5qh17wlop4xyxu9n9wr02)
-
+``` bash
+$ cookiecutter https://github.com/knu2xs/cookiecutter-geoai
+```
 
 ### The resulting directory structure
 ------------
@@ -37,7 +35,7 @@ The directory structure of your new project will look like this:
     ├── README.md          <- The top-level README for developers using this project.
     │
     ├── arcgis             <- Root location for ArcGIS Pro project created as part of
-    │                         project creation.
+    │                         data science project creation.
     │
     ├── data
     │   ├── external       <- Data from third party sources.
