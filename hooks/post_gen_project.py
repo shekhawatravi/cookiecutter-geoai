@@ -19,7 +19,7 @@ for drctry in dir_lst:
     if not os.path.exists(drctry):
         os.makedirs(drctry)
 
-interim_gdb = os.path.join(interim_dir, 'interim.gdb')
+interim_gdb = os.path.join(dir_lst[2], 'interim.gdb')
 if not arcpy.Exists(interim_gdb):
     arcpy.management.CreateFileGDB(interim_dir, 'interim.gdb')
 
