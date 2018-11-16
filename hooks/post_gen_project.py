@@ -14,14 +14,13 @@ old_aprx.saveACopy(new_project_path)
 new_aprx = arcpy.mp.ArcGISProject(new_project_path)
 
 # set the default geodatabase to be an interim file geodatabase
-interim_gdb = os.path.join(
-    os.getcwd(),
-    'data',
-    'interim',
-    'interim.gdb'
-)
+interim_dir = os.path.join(os.getcwd(), 'data\\interim')
+if not os.path.exists(interim_dir):
+    os.makedirs(interim_dir)
+
+interim_gdb = os.path.join(interim_dir, 'interim.gdb')
 if not arcpy.Exists(interim_gdb):
-    arcpy.management.CreateFileGDB(os.path.dirname(interim_gdb), os.path.basename(interim_gdb))
+    arcpy.management.CreateFileGDB(interim_dir, 'interim.gdb')
 
 new_aprx.defaultGeodatabase = interim_gdb
 
