@@ -21,7 +21,7 @@ for drctry in dir_lst:
 
 interim_gdb = os.path.join(dir_lst[2], 'interim.gdb')
 if not arcpy.Exists(interim_gdb):
-    arcpy.management.CreateFileGDB(interim_dir, 'interim.gdb')
+    arcpy.management.CreateFileGDB(dir_lst[2], 'interim.gdb')
 
 new_aprx.defaultGeodatabase = interim_gdb
 
