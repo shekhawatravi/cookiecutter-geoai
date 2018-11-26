@@ -4,9 +4,6 @@ _A logical, reasonably standardized, but flexible project structure for doing an
 
 This cookiecutter template is designed to be used for GeoAI, geographic data science work utilizing ArcGIS Pro combined with Python machine learning technologies.
 
-#### [Project homepage](http://drivendata.github.io/cookiecutter-data-science/)
-
-
 ### Requirements to use the cookiecutter template:
 -----------
  - Python 3.5 _with_ ArcPy
