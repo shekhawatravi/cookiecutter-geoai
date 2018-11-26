@@ -1,14 +1,15 @@
 import os
 import shutil
+import importlib
 
 # see if arcpy available to accommodate non-windows environments
-try:
+if importlib.util.find_spec("arcpy") is not None:
     import arcpy
     has_arcpy = True
-except:
+else:
     has_arcpy = False
 
-# set the default geodatabase to be an interim file geodatabase
+# ensure the data directories are populated
 dir_lst = [os.path.join(os.getcwd(), 'data', drctry)
            for drctry in ['raw', 'external', 'interim', 'processed']]
 for drctry in dir_lst:
