@@ -10,7 +10,7 @@ This cookiecutter template is designed to be used for GeoAI, geographic data sci
  - [Cookiecutter](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with Conda:
 
 ``` bash
-$ conda -c conda-forge install cookiecutter
+$ conda install cookiecutter
 ```
 
 
