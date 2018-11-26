@@ -81,16 +81,3 @@ The directory structure of your new project will look like this:
     └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
 ```
 
-## Contributing
-
-We welcome contributions! [See the docs for guidelines](https://drivendata.github.io/cookiecutter-data-science/#contributing).
-
-### Installing development requirements
-------------
-
-    pip install -r requirements.txt
-
-### Running the tests
-------------
-
-    py.test tests
