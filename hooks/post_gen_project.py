@@ -62,4 +62,4 @@ if has_arcpy:
 
 # if arcpy is not available
 else:
-    os.remove(os.path.abspath(r'./arcgis'))
+    shutil.rmtree(os.path.abspath(r'./arcgis'))
