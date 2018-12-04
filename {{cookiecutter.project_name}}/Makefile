@@ -14,7 +14,6 @@ CONDA_PARENT = {{ cookiecutter.conda_parent_environment }}
 
 ## Make Dataset
 data:
-	. activate $(PROJECT_NAME)
 	python src/data/make_dataset.py
 	@echo ">>> Data processed."
 
@@ -30,13 +29,18 @@ env_create:
 
 ## Export the current environment
 env_export:
-	conda env export > environment.yml
+	conda env export --name $(PROJECT_NAME) > environment.yml
 	@echo ">>> $(PROJECT_NAME) conda environment exported to ./environment.yml"
 
-## Activate the environment
-env_activate:
+## Activate the environment - doesn't work, so commented out
+# env_activate:
+# 	. activate $(PROJECT_NAME)
+# 	@echo ">>> $(PROJECT_NAME) conda environment activated."
+
+## Run all tests in module
+test:
 	. activate $(PROJECT_NAME)
-	@echo ">>> $(PROJECT_NAME) conda environment activated."
+	pytest
 
 #################################################################################
 # PROJECT RULES                                                                 #
