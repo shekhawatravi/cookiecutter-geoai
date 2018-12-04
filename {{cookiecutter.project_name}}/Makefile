@@ -14,6 +14,7 @@ CONDA_PARENT = {{ cookiecutter.conda_parent_environment }}
 
 ## Make Dataset
 data:
+	. activate $(PROJECT_NAME)
 	python src/data/make_dataset.py
 	@echo ">>> Data processed."
 
