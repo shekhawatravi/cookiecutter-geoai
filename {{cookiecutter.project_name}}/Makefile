@@ -1,4 +1,4 @@
-.PHONY: clean data lint requirements
+.PHONY: data clean lint env_create env_export env_activate
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -6,43 +6,37 @@
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = {{ cookiecutter.repo_name }}
-CONDA_PARENT_ENVIRONMENT = {{ cookiecutter.conda_parent_environment }}
-
-ifeq (,$(shell which conda))
-HAS_CONDA=False
-else
-HAS_CONDA=True
-endif
+CONDA_PARENT = {{ cookiecutter.conda_parent_environment }}
 
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
 
-## Install Python Dependencies
-requirements: test_environment
-	# $(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	# $(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-
 ## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py
+data:
+	. activate $(PROJECT_NAME)
+	python src/data/make_dataset.py
+	@echo ">>> Data processed."
 
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
-## Lint using flake8
-lint:
-	flake8 src
+## Set up python environment
+env_create:
+	conda create --name $(PROJECT_NAME) --clone $(CONDA_PARENT)
+	@echo ">>> New conda environment, $(PROJECT_NAME), created. Activate with:\n- source activate $(PROJECT_NAME)\n- make env_activate"
 
-## Set up python interpreter environment
-create_environment:
-	conda create --name $(PROJECT_NAME) --clone $(CONDA_PARENT_ENVIRONMENT)
+## Export the current environment
+env_export:
+	conda env export > environment.yml
+	@echo ">>> $(PROJECT_NAME) conda environment exported to ./environment.yml"
 
-## Test python environment is setup correctly
-test_environment:
-	$(PYTHON_INTERPRETER) test_environment.py
+## Activate the environment
+env_activate:
+	. activate $(PROJECT_NAME)
+	@echo ">>> $(PROJECT_NAME) conda environment activated."
 
 #################################################################################
 # PROJECT RULES                                                                 #
