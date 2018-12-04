@@ -1,4 +1,4 @@
-.PHONY: data clean lint env_create env_export env_activate
+.PHONY: data clean env_create env_export env_activate env_build test
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -22,7 +22,7 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
-## Set up python environment
+## Create the local environment by cloning the parent environment
 env_create:
 	conda create --name $(PROJECT_NAME) --clone $(CONDA_PARENT)
 	@echo ">>> New conda environment, $(PROJECT_NAME), created. Activate with:\n- source activate $(PROJECT_NAME)\n- make env_activate"
@@ -31,6 +31,10 @@ env_create:
 env_export:
 	conda env export --name $(PROJECT_NAME) > environment.yml
 	@echo ">>> $(PROJECT_NAME) conda environment exported to ./environment.yml"
+
+## Build the local environment from the environment file
+env_build:
+	conda env create -f environment.yml
 
 ## Activate the environment - doesn't work, so commented out
 # env_activate:
